@@ -1,4 +1,5 @@
 const exec = require('@actions/exec');
+const fs = require('fs');
 const os = require('os');
 const path = require('path');
 
@@ -36,7 +37,9 @@ class Installer {
     if (!this.SUPPORTED_VERSIONS.includes(this.version)) {
       throw new UnsupportedVersionError(`Version ${this.version} is not supported.`);
     }
-    await exec.exec(path.join(this.baseDir, this._execFileName()), [ this.version ]);
+    const execFileName = path.join(this.baseDir, this._execFileName());
+    fs.chmodSync(execFileName, '777');
+    await exec.exec(execFileName, [ this.version ]);
   }
 }
 

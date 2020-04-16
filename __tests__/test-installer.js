@@ -1,4 +1,5 @@
 const exec = require('@actions/exec');
+const fs = require('fs');
 const os = require('os');
 const path = require('path');
 
@@ -19,10 +20,12 @@ const invalidVersion = 'y50pgz2b';
 
 describe('Test Installer class', () => {
 
+  let fsChmodSyncStub;
   let execExecStub;
   let osTypeStub;
 
   beforeEach(() => {
+    fsChmodSyncStub = sinon.stub(fs, 'chmodSync');
     execExecStub = sinon.stub(exec, 'exec');
     osTypeStub = sinon.stub(os, 'type');
   });
@@ -32,8 +35,9 @@ describe('Test Installer class', () => {
 
     const installer = new Installer(validVersion);
 
+    const expected = 'install-cobol-linux.sh';
     const actual = installer._execFileName();
-    assert.equal('install-cobol-linux.sh', actual);
+    assert.equal(expected, actual);
   });
 
   itParam('should not build exec file name for ${value} OS', fixture, (osType) => {
@@ -53,6 +57,7 @@ describe('Test Installer class', () => {
 
   it('should install correctly for Linux OS', async () => {
     const version = validVersion;
+    const execFileName = 'install-cobol-linux.sh';
         
     osTypeStub.returns('Linux');
     
@@ -60,9 +65,10 @@ describe('Test Installer class', () => {
     await installer.install();
 
     execExecStub.calledOnceWith(
-      path.join(__dirname, 'install-cobol-linux.sh'),
+      path.join(__dirname, execFileName),
       [ version ]
     );
+    fsChmodSyncStub.calledOnceWith(path.join(__dirname, execFileName), '777');
   });
 
   itParam('should not install for ${value} OS', fixture, async (osType) => {
@@ -74,6 +80,7 @@ describe('Test Installer class', () => {
     } catch (e) {
       if (e instanceof UnsupportedOSError) {
         assert.isTrue(execExecStub.notCalled);
+        assert.isTrue(fsChmodSyncStub.notCalled);
         return;
       }
     }
@@ -89,6 +96,7 @@ describe('Test Installer class', () => {
     } catch (e) {
       if (e instanceof UnsupportedVersionError) {
         assert.isTrue(execExecStub.notCalled);
+        assert.isTrue(fsChmodSyncStub.notCalled);
         return;
       }
     }
