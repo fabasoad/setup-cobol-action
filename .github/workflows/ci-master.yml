@@ -22,7 +22,7 @@ jobs:
           command: test
   functional_tests:
     name: Functional tests
-    timeout-minutes: 25
+    timeout-minutes: 10
     strategy:
       matrix:
         os: ['ubuntu-latest']
@@ -36,4 +36,5 @@ jobs:
       - name: Validate script
         run: |
           cobc -x ./HelloWorld.cob
+          ./HelloWorld
           [[ "$(./HelloWorld)" == "Hello World!" ]] || exit 1;

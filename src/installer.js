@@ -21,7 +21,6 @@ class Installer {
   constructor(version, baseDir = __dirname) {
     this.version = version;
     this.baseDir = baseDir;
-    fs.readdirSync(this.baseDir).forEach(f => console.log(f));
     this.logger = new Logger('Installer');
     this.SUPPORTED_VERSIONS = ['3.0-rc1'];
     this.EXEC_FILE_NAME = 'install-cobol-linux.sh';
