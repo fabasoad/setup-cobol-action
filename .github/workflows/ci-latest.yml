@@ -21,7 +21,7 @@ jobs:
           command: test
   functional_tests:
     name: Functional tests
-    timeout-minutes: 10
+    timeout-minutes: 5
     strategy:
       matrix:
         os: ['ubuntu-latest']

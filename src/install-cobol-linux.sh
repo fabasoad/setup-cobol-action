@@ -1,6 +1,5 @@
 #!/bin/bash
 sudo apt-get update
-# sudo apt-get -y upgrade # TODO: check without this command
 sudo apt-get -y install curl tar libncurses5-dev libgmp-dev libdb-dev
 sudo apt-get -y autoremove
 sudo apt-get -y install iproute2
