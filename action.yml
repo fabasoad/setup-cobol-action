@@ -1,0 +1,14 @@
+---
+name: Setup COBOL
+author: Yevhen Fabizhevskyi
+description: This action sets up GnuCOBOL.
+# branding:
+#   icon: feather
+#   color: green
+inputs:
+  version:
+    description: 'GnuCOBOL version.'
+    required: true
+runs:
+  using: 'node12'
+  main: 'dist/index.js'

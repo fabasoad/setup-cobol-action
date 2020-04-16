@@ -1,0 +1,40 @@
+---
+name: CI (latest)
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  unit_tests:
+    name: Unit tests
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2.1.0
+        with:
+          ref: ${{ github.ref }}
+      - uses: Adzz/jest_test_action@v1.0.0
+        with:
+          package-manager: npm
+          command: test
+  functional_tests:
+    name: Functional tests
+    timeout-minutes: 5
+    strategy:
+      matrix:
+        os: ['ubuntu-latest']
+        version: ['3.0-rc1']
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v2.1.0
+        with:
+          ref: ${{ github.ref }}
+      - uses: fabasoad/setup-cobol-action@v1.0.0
+        with:
+          version: ${{ matrix.version }}
+      - name: Validate script
+        run: |
+          cobc -x ./HelloWorld.cob
+          [[ "$(./HelloWorld)" == "Hello World!" ]] || exit 1;

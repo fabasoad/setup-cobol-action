@@ -1,0 +1,39 @@
+---
+name: CI (master)
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  unit_tests:
+    name: Unit tests
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2.1.0
+      - uses: Adzz/jest_test_action@v1.0.0
+        with:
+          package-manager: npm
+          command: test
+  functional_tests:
+    name: Functional tests
+    timeout-minutes: 5
+    strategy:
+      matrix:
+        os: ['ubuntu-latest']
+        version: ['3.0-rc1']
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v2.1.0
+      - uses: ./
+        with:
+          version: ${{ matrix.version }}
+      - name: Validate script
+        run: |
+          cobc -x ./HelloWorld.cob
+          [[ "$(./HelloWorld)" == "Hello World!" ]] || exit 1;
