@@ -4,7 +4,7 @@ name: Shell Lint
 on:
   push:
     paths:
-      - '**.sh'
+      - 'src/install-linux'
 
 jobs:
   lint:

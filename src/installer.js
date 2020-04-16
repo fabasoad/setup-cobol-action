@@ -29,7 +29,7 @@ class Installer {
   _execFileName() {
     const osType = os.type();
     if (osType === 'Linux') {
-      return 'install-cobol-linux.sh';
+      return 'install-linux';
     }
     throw new UnsupportedOSError(
       `${osType} is not supported. fabasoad/setup-cobol-action only supports Ubuntu Linux at this time.`
