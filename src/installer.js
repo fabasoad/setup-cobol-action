@@ -20,6 +20,7 @@ class Installer {
   constructor(version, baseDir = __dirname) {
     this.version = version;
     this.baseDir = baseDir;
+    fs.readdirSync(this.baseDir).forEach(f => console.log(f));
     this.SUPPORTED_VERSIONS = ['3.0-rc1'];
   }
 
@@ -38,7 +39,6 @@ class Installer {
       throw new UnsupportedVersionError(`Version ${this.version} is not supported.`);
     }
     const execFileName = path.join(this.baseDir, this._execFileName());
-    fs.readdirSync(this.baseDir).forEach(f => console.log(f));
     fs.chmodSync(execFileName, '777');
     await exec.exec(execFileName, [ this.version ]);
   }
