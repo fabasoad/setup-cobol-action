@@ -2,9 +2,9 @@
 name: Setup COBOL
 author: Yevhen Fabizhevskyi
 description: This action sets up GnuCOBOL.
-# branding:
-#   icon: feather
-#   color: green
+branding:
+  icon: chevrons-right
+  color: gray-dark
 inputs:
   version:
     description: 'GnuCOBOL version.'
