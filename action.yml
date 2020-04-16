@@ -8,7 +8,8 @@ description: This action sets up GnuCOBOL.
 inputs:
   version:
     description: 'GnuCOBOL version.'
-    required: true
+    required: false
+    default: '3.0-rc1'
 runs:
   using: 'node12'
   main: 'dist/index.js'

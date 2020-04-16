@@ -6,7 +6,7 @@ This action sets up a [COBOL](https://en.wikipedia.org/wiki/COBOL) programming l
 ## Inputs
 | Name    | Required | Description                                          | Default   | Possible values |
 |---------|----------|------------------------------------------------------|-----------|-----------------|
-| version | Yes      | GnuCOBOL version. Currently supports `3.0-rc1` only. | `3.0-rc1` | `3.0-rc1`       |
+| version | No       | GnuCOBOL version. Currently supports `3.0-rc1` only. | `3.0-rc1` | `3.0-rc1`       |
 
 ## Example usage
 

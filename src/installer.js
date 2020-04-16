@@ -16,8 +16,9 @@ class UnsupportedVersionError extends Error {
 
 class Installer {
 
-  constructor(version) {
+  constructor(version, baseDir = __dirname) {
     this.version = version;
+    this.baseDir = baseDir;
     this.SUPPORTED_VERSIONS = ['3.0-rc1'];
   }
 
@@ -35,7 +36,7 @@ class Installer {
     if (!this.SUPPORTED_VERSIONS.includes(this.version)) {
       throw new UnsupportedVersionError(`Version ${this.version} is not supported.`);
     }
-    await exec.exec(path.join(__dirname, this._execFileName()), [ this.version ]);
+    await exec.exec(path.join(this.baseDir, this._execFileName()), [ this.version ]);
   }
 }
 
