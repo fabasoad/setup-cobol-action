@@ -24,12 +24,13 @@ class Installer {
     fs.readdirSync(this.baseDir).forEach(f => console.log(f));
     this.logger = new Logger('Installer');
     this.SUPPORTED_VERSIONS = ['3.0-rc1'];
+    this.EXEC_FILE_NAME = 'install-cobol-linux.sh';
   }
 
   _execFileName() {
     const osType = os.type();
     if (osType === 'Linux') {
-      return 'install-linux';
+      return this.EXEC_FILE_NAME;
     }
     throw new UnsupportedOSError(
       `${osType} is not supported. fabasoad/setup-cobol-action only supports Ubuntu Linux at this time.`
