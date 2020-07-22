@@ -1,5 +1,5 @@
 # Setup COBOL
-![GitHub release](https://img.shields.io/github/v/release/fabasoad/setup-cobol-action?include_prereleases) ![CI (latest)](https://github.com/fabasoad/setup-cobol-action/workflows/CI%20(latest)/badge.svg) ![CI (master)](https://github.com/fabasoad/setup-cobol-action/workflows/CI%20(master)/badge.svg) ![YAML Lint](https://github.com/fabasoad/setup-cobol-action/workflows/YAML%20Lint/badge.svg) ![Shell Lint](https://github.com/fabasoad/setup-cobol-action/workflows/Shell%20Lint/badge.svg)
+![GitHub release](https://img.shields.io/github/v/release/fabasoad/setup-cobol-action?include_prereleases) ![CI (latest)](https://github.com/fabasoad/setup-cobol-action/workflows/CI%20(latest)/badge.svg) ![CI (main)](https://github.com/fabasoad/setup-cobol-action/workflows/CI%20(main)/badge.svg) ![YAML Lint](https://github.com/fabasoad/setup-cobol-action/workflows/YAML%20Lint/badge.svg) ![Shell Lint](https://github.com/fabasoad/setup-cobol-action/workflows/Shell%20Lint/badge.svg)
 
 This action sets up a [COBOL](https://en.wikipedia.org/wiki/COBOL) programming language. Currently supports Linux Ubuntu only.
 
@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - uses: fabasoad/setup-cobol-action@master
+      - uses: fabasoad/setup-cobol-action@main
       - name: Run script
         run: |
           cobc -x HelloWorld.cob
@@ -31,4 +31,4 @@ jobs:
 ```
 
 ### Result
-![Result](https://raw.githubusercontent.com/fabasoad/setup-cobol-action/master/screenshot.png)
+![Result](https://raw.githubusercontent.com/fabasoad/setup-cobol-action/main/screenshot.png)

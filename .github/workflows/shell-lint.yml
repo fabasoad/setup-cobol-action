@@ -12,5 +12,5 @@ jobs:
     timeout-minutes: 3
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2.1.0
-      - uses: bewuethr/shellcheck-action@v2.0.2
+      - uses: actions/checkout@v2.3.1
+      - uses: bewuethr/shellcheck-action@v2.0.3
