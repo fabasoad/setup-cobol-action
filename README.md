@@ -1,7 +1,7 @@
-# Setup COBOL
+# Setup COBOL (GnuCOBOL)
 ![GitHub release](https://img.shields.io/github/v/release/fabasoad/setup-cobol-action?include_prereleases) ![CI (latest)](https://github.com/fabasoad/setup-cobol-action/workflows/CI%20(latest)/badge.svg) ![CI (main)](https://github.com/fabasoad/setup-cobol-action/workflows/CI%20(main)/badge.svg) ![YAML Lint](https://github.com/fabasoad/setup-cobol-action/workflows/YAML%20Lint/badge.svg) ![Shell Lint](https://github.com/fabasoad/setup-cobol-action/workflows/Shell%20Lint/badge.svg)
 
-This action sets up a [COBOL](https://en.wikipedia.org/wiki/COBOL) programming language. Currently supports Linux Ubuntu only.
+This action sets up a [GnuCOBOL](https://en.wikipedia.org/wiki/COBOL) programming language. Currently supports Linux Ubuntu only.
 
 ## Inputs
 | Name    | Required | Description                                          | Default   | Possible values |
