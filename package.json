@@ -29,9 +29,9 @@
   "devDependencies": {
     "@zeit/ncc": "^0.22.3",
     "chai": "^4.2.0",
-    "mocha": "^8.0.1",
+    "mocha": "^8.1.1",
     "mocha-param": "^2.0.1",
-    "sinon": "^9.0.2",
+    "sinon": "^9.0.3",
     "winston": "^3.3.3"
   }
 }
