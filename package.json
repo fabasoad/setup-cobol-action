@@ -1,6 +1,6 @@
 {
   "name": "setup-cobol-action",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "This action sets up a GnuCOBOL.",
   "main": "dist/index.js",
   "scripts": {
@@ -29,9 +29,9 @@
   "devDependencies": {
     "@zeit/ncc": "^0.22.3",
     "chai": "^4.2.0",
-    "mocha": "^8.1.1",
+    "mocha": "^8.1.3",
     "mocha-param": "^2.0.1",
-    "sinon": "^9.0.3",
+    "sinon": "^9.1.0",
     "winston": "^3.3.3"
   }
 }
