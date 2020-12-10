@@ -17,7 +17,6 @@ class UnsupportedVersionError extends Error {
 }
 
 class Installer {
-
   constructor(version, baseDir = __dirname) {
     this.version = version;
     this.baseDir = baseDir;
@@ -32,19 +31,22 @@ class Installer {
       return this.EXEC_FILE_NAME;
     }
     throw new UnsupportedOSError(
+      // eslint-disable-next-line max-len
       `${osType} is not supported. fabasoad/setup-cobol-action only supports Ubuntu Linux at this time.`
     );
   }
 
   async install() {
     if (!this.SUPPORTED_VERSIONS.includes(this.version)) {
-      throw new UnsupportedVersionError(`Version ${this.version} is not supported.`);
+      throw new UnsupportedVersionError(
+        `Version ${this.version} is not supported.`
+      );
     }
     const execFileName = path.join(this.baseDir, this._execFileName());
     this.logger.info(`Changing permissions to 777 for ${execFileName}...`);
     fs.chmodSync(execFileName, '777');
     this.logger.info(`Running ${execFileName}...`);
-    await exec.exec(execFileName, [ this.version ]);
+    await exec.exec(execFileName, [this.version]);
     this.logger.info('Installation successfully finished.');
   }
 }
