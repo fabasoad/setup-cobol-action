@@ -24,7 +24,7 @@ jobs:
     name: Setup
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@main
       - uses: fabasoad/setup-cobol-action@main
       - name: Run script
         run: |
@@ -34,4 +34,7 @@ jobs:
 
 ### Result
 
-![Result](https://raw.githubusercontent.com/fabasoad/setup-cobol-action/main/screenshot.png)
+```shell
+Run cobc -x HelloWorld.cob
+Hello World!
+```
