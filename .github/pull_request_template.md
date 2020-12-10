@@ -7,8 +7,8 @@ Please check if your PR fulfills the following requirements:
 - [ ] I have read the [CONTRIBUTING](https://github.com/fabasoad/setup-cobol-action/CONTRIBUTING.md) doc.
 - [ ] Tests for the changes have been added (for bug fixes / features).
 - [ ] Docs have been reviewed and added / updated if needed (for bug fixes / features).
-- [ ] Build (`npm run build`) was run locally and any changes were pushed.
-- [ ] Tests (`npm test`) has passed locally and any fixes were made for failures.
+- [ ] Build (`yarn run build`) was run locally and any changes were pushed.
+- [ ] Tests (`yarn test`) has passed locally and any fixes were made for failures.
 
 ## Pull request type
 
