@@ -13,13 +13,12 @@ const {
   UnsupportedVersionError
 } = require('../src/installer');
 
-const fixture = ['Darwin','Windows_NT'];
+const fixture = ['Darwin', 'Windows_NT'];
 
 const validVersion = '3.0-rc1';
 const invalidVersion = 'y50pgz2b';
 
 describe('Test Installer class', () => {
-
   let fsChmodSyncStub;
   let execExecStub;
   let osTypeStub;
@@ -40,40 +39,42 @@ describe('Test Installer class', () => {
     assert.equal(expected, actual);
   });
 
-  itParam('should not build exec file name for ${value} OS', fixture, (osType) => {
-    osTypeStub.returns(osType);
+  itParam('should not build exec file name for ${value} OS', fixture,
+    (osType) => {
+      osTypeStub.returns(osType);
 
-    const installer = new Installer(validVersion);
+      const installer = new Installer(validVersion);
 
-    try {
-      installer._execFileName();
-    } catch (e) {
-      if (e instanceof UnsupportedOSError) {
-        return;
+      try {
+        installer._execFileName();
+      } catch (e) {
+        if (e instanceof UnsupportedOSError) {
+          return;
+        }
       }
-    }
-    assert.Throw();
-  });
+      // eslint-disable-next-line new-cap
+      assert.Throw();
+    });
 
   it('should install correctly for Linux OS', async () => {
     const version = validVersion;
     const execFileName = 'install-cobol-linux.sh';
-        
+
     osTypeStub.returns('Linux');
-    
+
     const installer = new Installer(version);
     await installer.install();
 
     execExecStub.calledOnceWith(
       path.join(__dirname, execFileName),
-      [ version ]
+      [version]
     );
     fsChmodSyncStub.calledOnceWith(path.join(__dirname, execFileName), '777');
   });
 
   itParam('should not install for ${value} OS', fixture, async (osType) => {
     osTypeStub.returns(osType);
-    
+
     const installer = new Installer(validVersion);
     try {
       await installer.install();
@@ -84,12 +85,13 @@ describe('Test Installer class', () => {
         return;
       }
     }
+    // eslint-disable-next-line new-cap
     assert.Throw();
   });
 
   it('should not install invalid version', async () => {
     osTypeStub.returns('Linux');
-    
+
     const installer = new Installer(invalidVersion);
     try {
       await installer.install();
@@ -100,6 +102,7 @@ describe('Test Installer class', () => {
         return;
       }
     }
+    // eslint-disable-next-line new-cap
     assert.Throw();
   });
 
