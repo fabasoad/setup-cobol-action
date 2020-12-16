@@ -3,7 +3,7 @@ name: Check updates
 
 on:
   schedule:
-    - cron: '0 21 * * 0'
+    - cron: '0 21 * * 6'
 
 env:
   ACTIONS_ALLOW_UNSECURE_COMMANDS: true
@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2.3.4
       - name: Print outdated dependencies
-        run: yarn outdated || echo ''
+        run: yarn outdated || true
       - name: Update versions
         run: yarn upgrade --latest
       - name: Compile
