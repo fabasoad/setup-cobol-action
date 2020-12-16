@@ -6,8 +6,10 @@ on:
     branches:
       - main
       - 'bugfix/**'
-      - 'bump/patch-**'
       - 'feature/**'
+  pull_request:
+    branches:
+      - 'bump/patch-**'
 
 env:
   ACTIONS_ALLOW_UNSECURE_COMMANDS: true
