@@ -1,6 +1,6 @@
 {
   "name": "setup-cobol-action",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "This action sets up a GnuCOBOL.",
   "main": "dist/index.js",
   "scripts": {
@@ -37,7 +37,7 @@
     "eslint": "7.16.0",
     "eslint-config-google": "0.14.0",
     "git-branch-is": "4.0.0",
-    "husky": "4.3.6",
+    "husky": "5.0.6",
     "mocha": "8.2.1",
     "mocha-param": "2.0.1",
     "nyc": "15.1.0",
@@ -45,11 +45,5 @@
     "snyk": "1.437.3",
     "winston": "3.3.3"
   },
-  "snyk": true,
-  "husky": {
-    "hooks": {
-      "pre-commit": "git-branch-is --not main && yarn run build && git add dist/index.js",
-      "pre-push": "yarn run lint && yarn test"
-    }
-  }
+  "snyk": true
 }
