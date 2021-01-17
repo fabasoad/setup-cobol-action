@@ -44,7 +44,7 @@ jobs:
         run: yarn run test
         if: github.event_name == 'push' && github.ref != 'refs/heads/main'
       - name: Unit tests with coverage
-        uses: paambaati/codeclimate-action@v2.7.4
+        uses: paambaati/codeclimate-action@v2.7.5
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
@@ -60,7 +60,7 @@ jobs:
         version: ['3.0-rc1']
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v2.3.3
+      - uses: actions/checkout@v2.3.4
         with:
           ref: ${{ github.ref }}
       - uses: ./
