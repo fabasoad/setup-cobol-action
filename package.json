@@ -1,6 +1,6 @@
 {
   "name": "setup-cobol-action",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "This action sets up a GnuCOBOL.",
   "main": "dist/index.js",
   "scripts": {
@@ -37,7 +37,7 @@
   "devDependencies": {
     "@vercel/ncc": "0.27.0",
     "chai": "4.2.0",
-    "eslint": "7.18.0",
+    "eslint": "7.19.0",
     "eslint-config-google": "0.14.0",
     "git-branch-is": "4.0.0",
     "husky": "5.0.6",
@@ -45,8 +45,8 @@
     "mocha": "8.2.1",
     "mocha-param": "2.0.1",
     "nyc": "15.1.0",
-    "sinon": "9.2.3",
-    "snyk": "1.437.4",
+    "sinon": "9.2.4",
+    "snyk": "1.440.1",
     "winston": "3.3.3"
   },
   "snyk": true
