@@ -6,8 +6,8 @@
   "scripts": {
     "build": "ncc build -m src/index.js",
     "lint:md": "markdownlint --config .markdownlint.yml '**/*.md'",
-    "lint:ts": "eslint src __tests__",
-    "lint": "yarn run lint:md && yarn run lint:ts",
+    "lint:es": "eslint src __tests__",
+    "lint": "yarn run lint:md && yarn run lint:es",
     "postinstall": "yarn husky install",
     "prepare": "yarn run snyk-protect",
     "security:auth": "snyk auth",
@@ -36,7 +36,7 @@
   },
   "devDependencies": {
     "@vercel/ncc": "0.27.0",
-    "chai": "4.2.0",
+    "chai": "4.3.0",
     "eslint": "7.19.0",
     "eslint-config-google": "0.14.0",
     "git-branch-is": "4.0.0",
@@ -46,7 +46,7 @@
     "mocha-param": "2.0.1",
     "nyc": "15.1.0",
     "sinon": "9.2.4",
-    "snyk": "1.440.1",
+    "snyk": "1.446.0",
     "winston": "3.3.3"
   },
   "snyk": true
