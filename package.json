@@ -41,7 +41,7 @@
     "eslint-config-google": "0.14.0",
     "git-branch-is": "4.0.0",
     "husky": "5.1.1",
-    "markdownlint-cli": "0.26.0",
+    "markdownlint-cli": "0.27.0",
     "mocha": "8.3.0",
     "mocha-param": "2.0.1",
     "nyc": "15.1.0",
