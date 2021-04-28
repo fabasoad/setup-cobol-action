@@ -46,7 +46,7 @@
     "mocha-param": "2.0.1",
     "nyc": "15.1.0",
     "sinon": "10.0.0",
-    "snyk": "1.522.0",
+    "snyk": "1.526.0",
     "winston": "3.3.3"
   },
   "snyk": true
