@@ -5,6 +5,7 @@ on:
   push:
     paths:
       - '**.sh'
+      - '!.husky/_/*.sh'
 
 jobs:
   lint:
