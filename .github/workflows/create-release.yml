@@ -12,9 +12,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Get commits since last release
-        id: changes
-        uses: simbo/changes-since-last-release-action@v1
+      - name: Build changelog
+        uses: scottbrenner/generate-changelog-action@master
+        id: build_changelog
       - name: Create release
         id: create_release
         uses: actions/create-release@v1
@@ -26,6 +26,6 @@ jobs:
           body: |
             # Changelog
 
-            ${{ steps.changes.outputs.log }}
+            ${{ steps.build_changelog.outputs.changelog }}
           draft: false
           prerelease: false
