@@ -15,7 +15,7 @@ jobs:
       - name: Get latest release
         id: latest_release
         run: |
-          latest_tag = $(curl --silent "https://api.github.com/repos/${{ github.repository }}/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+          latest_tag=$(curl --silent "https://api.github.com/repos/${{ github.repository }}/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
           echo ${latest_tag}
           echo "::set-output name=tag::${latest_tag}"
       - name: Build changelog
