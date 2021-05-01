@@ -12,11 +12,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Get latest release
+        id: latest_release
+        run: |
+          latest_tag = $(curl --silent "https://api.github.com/repos/${{ github.repository }}/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+          echo $latest_tag
+          echo "::set-output name=tag::$(latest_tag)"
       - name: Build changelog
         uses: mikepenz/release-changelog-builder-action@v1.8.0
         id: build_changelog
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          fromTag: ${{ steps.latest_release.outputs.tag }}
+          toTag: ${{ github.ref }}
       - name: Create release
         id: create_release
         uses: actions/create-release@v1
