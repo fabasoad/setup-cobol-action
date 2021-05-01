@@ -26,6 +26,9 @@ jobs:
         id: changelog
         run: |
           body=$(git log --pretty=oneline ${{ steps.latest_release.outputs.tag }}..${{ steps.current_release.outputs.tag }})
+          body="${body//'%'/'%25'}"
+          body="${body//$'\n'/'%0A'}"
+          body="${body//$'\r'/'%0D'}"
           echo "::set-output name=body::${body}"
       - name: Create release
         id: create_release
