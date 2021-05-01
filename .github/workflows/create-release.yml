@@ -12,20 +12,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Get latest release
+      - name: Get latest release tag
         id: latest_release
         run: |
           latest_tag=$(curl --silent "https://api.github.com/repos/${{ github.repository }}/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
-          echo ${GITHUB_REF/refs\/tags\//}
           echo "::set-output name=tag::${latest_tag}"
+      - name: Get current release tag
+        id: current_release
+        run: echo "::set-output name=tag::${GITHUB_REF/refs\/tags\//}"
       - name: Build changelog
-        uses: mikepenz/release-changelog-builder-action@v1.8.0
-        id: build_changelog
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          fromTag: ${{ steps.latest_release.outputs.tag }}
-          toTag: ${GITHUB_REF/refs\/tags\//}
+        id: changelog
+        run: |
+          body=$(git log --pretty=oneline ${{ steps.latest_release.outputs.tag }}..${{ steps.current_release.outputs.tag }})
+          echo "::set-output name=body::${body}"
       - name: Create release
         id: create_release
         uses: actions/create-release@v1
@@ -33,10 +32,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ github.ref }}
-          release_name: ${{ github.ref }}
+          release_name: ${{ steps.current_release.outputs.tag }}
           body: |
             # Changelog
 
-            ${{ steps.build_changelog.outputs.changelog }}
+            ${{ steps.changelog.outputs.body }}
           draft: false
           prerelease: false
