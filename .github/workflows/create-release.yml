@@ -13,8 +13,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build changelog
-        uses: scottbrenner/generate-changelog-action@master
+        uses: mikepenz/release-changelog-builder-action@v1.8.0
         id: build_changelog
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create release
         id: create_release
         uses: actions/create-release@v1
