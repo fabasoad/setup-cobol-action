@@ -35,7 +35,7 @@
     "@actions/exec": "1.0.4"
   },
   "devDependencies": {
-    "@vercel/ncc": "0.28.4",
+    "@vercel/ncc": "0.28.6",
     "chai": "4.3.4",
     "eslint": "7.27.0",
     "eslint-config-google": "0.14.0",
