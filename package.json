@@ -1,6 +1,6 @@
 {
   "name": "setup-cobol-action",
-  "version": "1.0.15",
+  "version": "1.0.14",
   "description": "This action sets up a GnuCOBOL.",
   "main": "dist/index.js",
   "scripts": {
