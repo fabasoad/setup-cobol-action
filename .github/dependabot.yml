@@ -5,8 +5,6 @@ updates:
     directory: "/"
     schedule:
       interval: "monthly"
-    assignees:
-      - "dependabot[bot]"
     reviewers:
       - "fabasoad"
     labels:
@@ -15,8 +13,6 @@ updates:
     directory: "/"
     schedule:
       interval: "monthly"
-    assignees:
-      - "dependabot[bot]"
     reviewers:
       - "fabasoad"
     labels:
