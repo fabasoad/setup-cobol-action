@@ -14,4 +14,5 @@ sudo chmod +x /home/cobol/cobol-unit-test/run-ut
 sudo chmod +x /home/cobol/cobol-unit-test/compile
 sudo chmod +x /home/cobol/cobol-unit-test/upload/ZUTZCPC
 
-echo "::add-path::/home/cobol"
+# shellcheck disable=SC2086
+echo "/home/cobol" >> $GITHUB_PATH
