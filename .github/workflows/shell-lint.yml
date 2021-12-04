@@ -14,4 +14,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2.4.0
-      - uses: bewuethr/shellcheck-action@v2.0.5
+      - uses: bewuethr/shellcheck-action@v2.1
