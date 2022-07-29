@@ -15,7 +15,7 @@ const {
 
 const fixture = ['Darwin', 'Windows_NT'];
 
-const validVersion = '3.0-rc1';
+const validVersions = ['3.1.2', '3.0-rc1', '3.1-rc1', '3.1.1'];
 const invalidVersion = 'y50pgz2b';
 
 describe('Test Installer class', () => {
@@ -29,21 +29,22 @@ describe('Test Installer class', () => {
     osTypeStub = sinon.stub(os, 'type');
   });
 
-  it('should build correct exec file name for Linux OS', () => {
-    osTypeStub.returns('Linux');
+  itParam('should build correct exec file name for Linux OS (${value})',
+    validVersions, (validVersion) => {
+      osTypeStub.returns('Linux');
 
-    const installer = new Installer(validVersion);
+      const installer = new Installer(validVersion);
 
-    const expected = 'install-cobol-linux.sh';
-    const actual = installer._execFileName();
-    assert.equal(expected, actual);
-  });
+      const expected = 'install-cobol-linux.sh';
+      const actual = installer._execFileName();
+      assert.equal(expected, actual);
+    });
 
   itParam('should not build exec file name for ${value} OS', fixture,
     (osType) => {
       osTypeStub.returns(osType);
 
-      const installer = new Installer(validVersion);
+      const installer = new Installer(validVersions[0]);
 
       try {
         installer._execFileName();
@@ -56,26 +57,26 @@ describe('Test Installer class', () => {
       assert.Throw();
     });
 
-  it('should install correctly for Linux OS', async () => {
-    const version = validVersion;
-    const execFileName = 'install-cobol-linux.sh';
+  itParam('should install correctly for Linux OS (${value})',
+    validVersions, async (version) => {
+      const execFileName = 'install-cobol-linux.sh';
 
-    osTypeStub.returns('Linux');
+      osTypeStub.returns('Linux');
 
-    const installer = new Installer(version);
-    await installer.install();
+      const installer = new Installer(version);
+      await installer.install();
 
-    execExecStub.calledOnceWith(
-      path.join(__dirname, execFileName),
-      [version]
-    );
-    fsChmodSyncStub.calledOnceWith(path.join(__dirname, execFileName), '777');
-  });
+      execExecStub.calledOnceWith(
+        path.join(__dirname, execFileName),
+        [version]
+      );
+      fsChmodSyncStub.calledOnceWith(path.join(__dirname, execFileName), '777');
+    });
 
   itParam('should not install for ${value} OS', fixture, async (osType) => {
     osTypeStub.returns(osType);
 
-    const installer = new Installer(validVersion);
+    const installer = new Installer(validVersions[0]);
     try {
       await installer.install();
     } catch (e) {

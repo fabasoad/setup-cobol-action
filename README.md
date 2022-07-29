@@ -6,9 +6,9 @@ This action sets up a [GnuCOBOL](https://en.wikipedia.org/wiki/COBOL) programmin
 
 ## Inputs
 
-| Name    | Required | Description                                          | Default   | Possible values |
-|---------|----------|------------------------------------------------------|-----------|-----------------|
-| version | No       | GnuCOBOL version. Currently supports `3.0-rc1` only. | `3.0-rc1` | `3.0-rc1`       |
+| Name    | Required | Description       | Default   | Possible values                       |
+|---------|----------|-------------------|-----------|---------------------------------------|
+| version | No       | GnuCOBOL version. | `3.1.2`   |`3.0-rc1`, `3.1-rc1`, `3.1.1`, `3.1.2` |
 
 ## Example usage
 

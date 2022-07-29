@@ -21,7 +21,7 @@ class Installer {
     this.version = version;
     this.baseDir = baseDir;
     this.logger = new Logger('Installer');
-    this.SUPPORTED_VERSIONS = ['3.0-rc1'];
+    this.SUPPORTED_VERSIONS = ['3.0-rc1', '3.1-rc1', '3.1.1', '3.1.2'];
     this.EXEC_FILE_NAME = 'install-cobol-linux.sh';
   }
 
@@ -42,11 +42,12 @@ class Installer {
         `Version ${this.version} is not supported.`
       );
     }
+    const sfFolder = this.version.match(/(\d\.\d).*/)[1]
     const execFileName = path.join(this.baseDir, this._execFileName());
     this.logger.info(`Changing permissions to 777 for ${execFileName}...`);
     fs.chmodSync(execFileName, '777');
     this.logger.info(`Running ${execFileName}...`);
-    await exec.exec(execFileName, [this.version]);
+    await exec.exec(execFileName, [sfFolder, this.version]);
     this.logger.info('Installation successfully finished.');
   }
 }
