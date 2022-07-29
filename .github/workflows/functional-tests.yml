@@ -2,15 +2,12 @@
 name: Functional Tests
 
 on:
+  pull_request:
+    branches:
+      - '*'
   push:
     branches:
       - 'main'
-      - 'bugfix/**'
-      - 'dependabot/**'
-      - 'feature/**'
-
-env:
-  ACTIONS_ALLOW_UNSECURE_COMMANDS: true
 
 jobs:
   functional_tests:
@@ -22,7 +19,7 @@ jobs:
         version: ['3.0-rc1']
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v2.4.0
+      - uses: actions/checkout@v3
         with:
           ref: ${{ github.ref }}
       - uses: ./

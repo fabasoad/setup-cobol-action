@@ -9,10 +9,6 @@
     "lint:es": "eslint src __tests__",
     "lint": "yarn run lint:md && yarn run lint:es",
     "postinstall": "yarn husky install",
-    "prepare": "yarn run snyk-protect",
-    "security:auth": "snyk auth",
-    "security:test": "snyk test",
-    "snyk-protect": "snyk protect",
     "test": "nyc mocha __tests__"
   },
   "repository": {
@@ -46,8 +42,6 @@
     "mocha-param": "2.0.1",
     "nyc": "15.1.0",
     "sinon": "13.0.1",
-    "snyk": "1.852.0",
     "winston": "3.6.0"
-  },
-  "snyk": true
+  }
 }
