@@ -1860,11 +1860,6 @@ sinon@13.0.1:
     nise "^5.1.1"
     supports-color "^7.2.0"
 
-snyk@1.852.0:
-  version "1.852.0"
-  resolved "https://registry.yarnpkg.com/snyk/-/snyk-1.852.0.tgz#c539ece4f2a966312b2ac37960b375aa550f6d15"
-  integrity sha512-p+C0Jq7qYsdmt8gmyB7rz3I9+BsVZKrXx/VqfPRgZECTQLft5BlXXE8dtwPIlKTIIBGQeT9Cy6ZyKzvZxpE6OA==
-
 source-map@^0.5.0:
   version "0.5.7"
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.5.7.tgz#8a039d2d1021d22d1ea14c80d8ea468ba2ef3fcc"
