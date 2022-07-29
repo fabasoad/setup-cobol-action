@@ -10,16 +10,6 @@ on:
       - 'main'
 
 jobs:
-  snyk_tests:
-    name: Snyk
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          ref: ${{ github.ref }}
-      - uses: snyk/actions/node@master
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_API_TOKEN }}
   codeql_tests:
     name: CodeQL
     runs-on: ubuntu-latest

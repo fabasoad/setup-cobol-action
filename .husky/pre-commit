@@ -1,9 +1,0 @@
-#!/bin/sh
-# shellcheck disable=SC1091,SC2086
-. "$(dirname $0)/_/husky.sh"
-
-yarn git-branch-is --not main
-git secrets --pre_commit_hook -- "$@"
-git secrets --scan
-yarn run build
-git add dist/index.js
