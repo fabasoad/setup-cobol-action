@@ -11,5 +11,5 @@ inputs:
     required: false
     default: '3.1.2'
 runs:
-  using: 'node12'
+  using: 'node16'
   main: 'dist/index.js'
