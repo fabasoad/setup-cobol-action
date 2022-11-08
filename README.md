@@ -14,11 +14,9 @@ language. Currently, supports Linux Ubuntu only.
 
 ## Inputs
 
-<!-- markdownlint-disable MD013 -->
 | Name    | Required | Description       | Default | Possible values                        |
 |---------|----------|-------------------|---------|----------------------------------------|
 | version | No       | GnuCOBOL version. | `3.1.2` | `3.0-rc1`, `3.1-rc1`, `3.1.1`, `3.1.2` |
-<!-- markdownlint-enable MD013 -->
 
 ## Example usage
 
