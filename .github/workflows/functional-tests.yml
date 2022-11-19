@@ -2,15 +2,13 @@
 name: Functional Tests
 
 on:
-  pull_request:
-    branches:
-      - '*'
   push:
     branches:
       - 'main'
+  pull_request:
 
 jobs:
-  functional_tests:
+  run-script:
     name: Run script
     timeout-minutes: 5
     strategy:

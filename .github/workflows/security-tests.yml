@@ -2,12 +2,10 @@
 name: Security Tests
 
 on:
-  pull_request:
-    branches:
-      - '*'
   push:
     branches:
       - 'main'
+  pull_request:
 
 jobs:
   codeql_tests:
