@@ -25,7 +25,7 @@ runs:
         COBOL_INSTALLED=$(if command -v cobc >/dev/null 2>&1; then echo true; else echo false; fi)
         echo "COBOL_INSTALLED=$COBOL_INSTALLED" >> $GITHUB_OUTPUT
       shell: sh
-    - name: Install Cobol
+    - name: Install COBOL
       if: ${{ runner.os == 'Linux' && steps.info.outputs.COBOL_INSTALLED == 'false' }}
       run: src/install.sh "${{ inputs.version }}"
       shell: sh
