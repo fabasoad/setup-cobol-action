@@ -1,5 +1,4 @@
 #!/bin/sh
-set -e
 
 sudo apt-get update
 sudo apt-get -y install curl tar libncurses5-dev libgmp-dev libdb-dev
