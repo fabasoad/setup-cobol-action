@@ -27,5 +27,7 @@ runs:
       shell: sh
     - name: Install Cobol
       if: ${{ runner.os == 'Linux' && steps.info.outputs.COBOL_INSTALLED == 'false' }}
-      run: src/install-cobol-linux.sh "${{ inputs.version }}"
+      run: |
+        chmod 777 src/install-cobol-linux.sh
+        src/install-cobol-linux.sh "${{ inputs.version }}"
       shell: sh
