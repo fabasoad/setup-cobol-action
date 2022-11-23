@@ -10,7 +10,9 @@
 [![Known Vulnerabilities](https://snyk.io/test/github/fabasoad/setup-cobol-action/badge.svg?targetFile=package.json)](https://snyk.io/test/github/fabasoad/setup-cobol-action?targetFile=package.json)
 
 This action sets up a [GnuCOBOL](https://en.wikipedia.org/wiki/COBOL) programming
-language. Currently, supports Linux Ubuntu only.
+language.
+
+Supported OS: Linux Ubuntu.
 
 ## Inputs
 
