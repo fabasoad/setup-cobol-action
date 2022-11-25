@@ -53,6 +53,8 @@ runs:
 
         echo "ls -A ${{ steps.info.outputs.COBOL_PATH }}"
         ls -A "${{ steps.info.outputs.COBOL_PATH }}"
+        echo "ls -A ${{ steps.info.outputs.COBOL_PATH }}/gnucobol-"${{ inputs.version }}""
+        ls -A "${{ steps.info.outputs.COBOL_PATH }}/gnucobol-"${{ inputs.version }}""
 
         sudo chmod +x /home/cobol/cobol-unit-test/run-ut
         sudo chmod +x /home/cobol/cobol-unit-test/compile
