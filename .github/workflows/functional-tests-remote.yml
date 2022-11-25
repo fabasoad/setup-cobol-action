@@ -5,7 +5,6 @@ on:
   push:
     branches:
       - 'main'
-  pull_request:
 
 jobs:
   run-script:
@@ -17,7 +16,8 @@ jobs:
         version: ['3.1.2', '3.0-rc1', '3.1-rc1', '3.1.1']
     runs-on: ubuntu-latest
     steps:
-      - uses: fabasoad/setup-cobol-action@rollback-to-1.1.0
+      - name: Setup COBOL
+        uses: fabasoad/setup-cobol-action@main
         with:
           version: ${{ matrix.version }}
       - name: Prepare script

@@ -1,8 +1,7 @@
 ---
 name: Functional Tests (Local)
 
-on:
-  pull_request:
+on: [pull_request]
 
 jobs:
   run-script:
@@ -15,7 +14,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: ./
+      - name: Setup COBOL
+        uses: ./
         with:
           version: ${{ matrix.version }}
       - name: Validate script
