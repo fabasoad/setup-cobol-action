@@ -1,5 +1,5 @@
 ---
-name: Functional Tests
+name: Functional Tests (Local)
 
 on:
   push:
@@ -8,8 +8,8 @@ on:
   pull_request:
 
 jobs:
-  local:
-    name: Local
+  run-script:
+    name: Run script
     timeout-minutes: 5
     strategy:
       fail-fast: false

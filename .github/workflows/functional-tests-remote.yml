@@ -1,5 +1,5 @@
 ---
-name: Functional Tests
+name: Functional Tests (Remote)
 
 on:
   push:
@@ -7,8 +7,8 @@ on:
       - 'fix-122'
 
 jobs:
-  remote:
-    name: Remote
+  run-script:
+    name: Run script
     timeout-minutes: 5
     strategy:
       fail-fast: false

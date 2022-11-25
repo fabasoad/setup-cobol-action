@@ -1,7 +1,7 @@
 # Setup COBOL (GnuCOBOL)
 
 ![GitHub release](https://img.shields.io/github/v/release/fabasoad/setup-cobol-action?include_prereleases)
-![Functional Tests](https://github.com/fabasoad/setup-cobol-action/workflows/Functional%20Tests/badge.svg)
+![Functional Tests](https://github.com/fabasoad/setup-cobol-action/workflows/Functional%20Tests%20(Remote)/badge.svg)
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/fabasoad/setup-cobol-action/main.svg)](https://results.pre-commit.ci/latest/github/fabasoad/setup-cobol-action/main)
 
 This action sets up a [GnuCOBOL](https://en.wikipedia.org/wiki/COBOL) programming
