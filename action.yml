@@ -48,7 +48,7 @@ runs:
         # download and install open-cobol for depencies (libcob >= 4.0)
         sudo apt-get -y install ranger autoconf build-essential
         curl -sLk https://sourceforge.net/projects/open-cobol/files/gnu-cobol/"$(echo "${{ inputs.version }}" | cut -b1- | cut -b-3)"/gnucobol-"${{ inputs.version }}".tar.gz | tar xz
-        cd gnucobol-"${{ inputs.version }}" && ./configure --prefix=/usr && sudo make && sudo make install && sudo ldconfig && cd /tmp/ && rm -rf ./*
+        cd gnucobol-"${{ inputs.version }}" && ./configure --prefix=/usr && sudo make && sudo make install && sudo ldconfig && cd /tmp/ && sudo rm -rf ./*
         sudo apt-get -y --purge autoremove
 
         sudo chmod +x /home/cobol/cobol-unit-test/run-ut
