@@ -1,0 +1,36 @@
+---
+name: Functional Tests (Remote)
+
+on:
+  push:
+    branches:
+      - 'main'
+  pull_request:
+
+jobs:
+  run-script:
+    name: Run script
+    timeout-minutes: 5
+    strategy:
+      fail-fast: false
+      matrix:
+        version: ['3.1.2', '3.0-rc1', '3.1-rc1', '3.1.1']
+    runs-on: ubuntu-latest
+    steps:
+      - uses: fabasoad/setup-cobol-action@rollback-to-1.1.0
+        with:
+          version: ${{ matrix.version }}
+      - name: Prepare script
+        run: |
+          echo "HELLO * HISTORIC EXAMPLE OF HELLO WORLD IN COBOL" > HelloWorld.cob
+          echo "       IDENTIFICATION DIVISION." >> HelloWorld.cob
+          echo "       PROGRAM-ID. HELLO." >> HelloWorld.cob
+          echo "       PROCEDURE DIVISION." >> HelloWorld.cob
+          echo "           DISPLAY "Hello World!"." >> HelloWorld.cob
+          echo "           STOP RUN." >> HelloWorld.cob
+        shell: sh
+      - name: Validate script
+        run: |
+          cobc -x ./HelloWorld.cob
+          [[ "$(./HelloWorld)" == "Hello World!" ]] || exit 1;
+        shell: sh
