@@ -1,11 +1,10 @@
 ---
-name: Functional Tests
+name: Functional Tests (main)
 
 on:
   push:
     branches:
-      - 'main'
-  pull_request:
+      - 'fix-122'
 
 jobs:
   run-script:
@@ -17,11 +16,20 @@ jobs:
         version: ['3.1.2', '3.0-rc1', '3.1-rc1', '3.1.1']
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
       - name: Setup COBOL
-        uses: ./
+        uses: fabasoad/setup-cobol-action@main
         with:
           version: ${{ matrix.version }}
+      - name: Prepare script
+        run: |
+          cat <<EOT >> HelloWorld.cob
+          HELLO * HISTORIC EXAMPLE OF HELLO WORLD IN COBOL
+              IDENTIFICATION DIVISION.
+              PROGRAM-ID. HELLO.
+              PROCEDURE DIVISION.
+                DISPLAY "Hello World!".
+                STOP RUN.
+          EOT
       - name: Validate script
         run: |
           cobc -x ./HelloWorld.cob
