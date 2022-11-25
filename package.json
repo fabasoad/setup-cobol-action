@@ -1,0 +1,42 @@
+{
+  "name": "setup-cobol-action",
+  "version": "1.3.0",
+  "description": "This action sets up a GnuCOBOL.",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "ncc build -m src/index.js",
+    "lint": "eslint src __tests__",
+    "postinstall": "pre-commit install --hook-type pre-commit && pre-commit install --hook-type pre-push",
+    "test": "nyc mocha __tests__"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fabasoad/setup-cobol-action.git"
+  },
+  "keywords": [
+    "actions",
+    "cobol",
+    "gnucobol"
+  ],
+  "author": "Yevhen Fabizhevskyi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fabasoad/setup-cobol-action/issues"
+  },
+  "homepage": "https://github.com/fabasoad/setup-cobol-action#readme",
+  "dependencies": {
+    "@actions/core": "1.10.0",
+    "@actions/exec": "1.1.1"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "0.34.0",
+    "chai": "4.3.7",
+    "eslint": "8.28.0",
+    "eslint-config-google": "0.14.0",
+    "mocha": "10.1.0",
+    "mocha-param": "2.0.1",
+    "nyc": "15.1.0",
+    "sinon": "14.0.2",
+    "winston": "3.8.2"
+  }
+}

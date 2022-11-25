@@ -1,8 +1,13 @@
 # Setup COBOL (GnuCOBOL)
 
 ![GitHub release](https://img.shields.io/github/v/release/fabasoad/setup-cobol-action?include_prereleases)
+![Unit Tests](https://github.com/fabasoad/setup-cobol-action/workflows/Unit%20Tests/badge.svg)
 ![Functional Tests](https://github.com/fabasoad/setup-cobol-action/workflows/Functional%20Tests/badge.svg)
+![Security Tests](https://github.com/fabasoad/setup-cobol-action/workflows/Security%20Tests/badge.svg)
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/fabasoad/setup-cobol-action/main.svg)](https://results.pre-commit.ci/latest/github/fabasoad/setup-cobol-action/main)
+[![Maintainability](https://api.codeclimate.com/v1/badges/84d9008a0dc1a2c6f703/maintainability)](https://codeclimate.com/github/fabasoad/setup-cobol-action/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/84d9008a0dc1a2c6f703/test_coverage)](https://codeclimate.com/github/fabasoad/setup-cobol-action/test_coverage)
+[![Known Vulnerabilities](https://snyk.io/test/github/fabasoad/setup-cobol-action/badge.svg?targetFile=package.json)](https://snyk.io/test/github/fabasoad/setup-cobol-action?targetFile=package.json)
 
 This action sets up a [GnuCOBOL](https://en.wikipedia.org/wiki/COBOL) programming
 language.
