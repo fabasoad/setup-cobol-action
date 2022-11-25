@@ -29,8 +29,11 @@ jobs:
           echo "           DISPLAY "Hello World!"." >> HelloWorld.cob
           echo "           STOP RUN." >> HelloWorld.cob
         shell: sh
+      - name: Print file
+        run: cat ./HelloWorld.cob
+        shell: sh
       - name: Validate script
         run: |
           cobc -x ./HelloWorld.cob
-          [[ "$(./HelloWorld)" == "Hello World!" ]] || exit 1;
+          [ "$(./HelloWorld)" = "Hello World!" ] || exit 1;
         shell: sh
