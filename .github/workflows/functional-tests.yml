@@ -1,14 +1,33 @@
 ---
-name: Functional Tests (main)
+name: Functional Tests
 
 on:
   push:
     branches:
       - 'fix-122'
+  pull_request:
 
 jobs:
-  run-script:
-    name: Run script
+  local:
+    name: Local
+    timeout-minutes: 5
+    strategy:
+      fail-fast: false
+      matrix:
+        version: ['3.1.2', '3.0-rc1', '3.1-rc1', '3.1.1']
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup COBOL
+        uses: ./
+        with:
+          version: ${{ matrix.version }}
+      - name: Validate script
+        run: |
+          cobc -x ./HelloWorld.cob
+          [[ "$(./HelloWorld)" == "Hello World!" ]] || exit 1;
+  remote:
+    name: Remote
     timeout-minutes: 5
     strategy:
       fail-fast: false
@@ -17,7 +36,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Setup COBOL
-        uses: fabasoad/setup-cobol-action@main
+        uses: fabasoad/setup-cobol-action@${{ github.ref_name }}
         with:
           version: ${{ matrix.version }}
       - name: Prepare script
