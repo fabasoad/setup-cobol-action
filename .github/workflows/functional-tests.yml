@@ -35,8 +35,12 @@ jobs:
         version: ['3.1.2', '3.0-rc1', '3.1-rc1', '3.1.1']
     runs-on: ubuntu-latest
     steps:
+      - name: Get branch name
+        id: branch
+        run: echo "value=${{ github.ref_name }}" >> $GITHUB_OUTPUT
+        shell: sh
       - name: Setup COBOL
-        uses: fabasoad/setup-cobol-action@${{ github.ref_name }}
+        uses: fabasoad/setup-cobol-action@${{ steps.branch.outputs.value }}
         with:
           version: ${{ matrix.version }}
       - name: Prepare script
