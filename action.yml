@@ -51,10 +51,6 @@ runs:
         cd gnucobol-"${{ inputs.version }}" && ./configure --prefix=/usr && sudo make && sudo make install && sudo ldconfig && cd /tmp/ && sudo rm -rf ./*
         sudo apt-get -y --purge autoremove
 
-        sudo chmod +x /home/cobol/cobol-unit-test/run-ut
-        sudo chmod +x /home/cobol/cobol-unit-test/compile
-        sudo chmod +x /home/cobol/cobol-unit-test/upload/ZUTZCPC
-
         echo "/home/cobol" >> $GITHUB_PATH
       shell: sh
       working-directory: ${{ steps.info.outputs.COBOL_PATH }}
