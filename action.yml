@@ -24,6 +24,8 @@ runs:
       run: |
         COBOL_INSTALLED=$(if command -v cobc >/dev/null 2>&1; then echo true; else echo false; fi)
         echo "COBOL_INSTALLED=$COBOL_INSTALLED" >> $GITHUB_OUTPUT
+        mkdir -p "$GITHUB_WORKSPACE/cobol"
+        echo "COBOL_PATH=$GITHUB_WORKSPACE/cobol" >> $GITHUB_OUTPUT
       shell: sh
     - name: Install COBOL
       if: ${{ runner.os == 'Linux' && steps.info.outputs.COBOL_INSTALLED == 'false' }}
@@ -49,12 +51,8 @@ runs:
         cd gnucobol-"${{ inputs.version }}" && ./configure --prefix=/usr && sudo make && sudo make install && sudo ldconfig && cd /tmp/ && sudo rm -rf ./*
         sudo apt-get -y --purge autoremove
 
-        echo "ls -A /home/cobol/"
-        ls -A "/home/cobol/"
-        echo "ls -A /home/cobol/cobol-unit-test/"
-        ls -A "/home/cobol/cobol-unit-test/"
-        echo "ls -A /home/cobol/cobol-unit-test/upload"
-        ls -A "/home/cobol/cobol-unit-test/upload"
+        echo "ls -A ${{ steps.info.outputs.COBOL_PATH }}"
+        ls -A "${{ steps.info.outputs.COBOL_PATH }}"
 
         sudo chmod +x /home/cobol/cobol-unit-test/run-ut
         sudo chmod +x /home/cobol/cobol-unit-test/compile
@@ -62,3 +60,4 @@ runs:
 
         echo "/home/cobol" >> $GITHUB_PATH
       shell: sh
+      working-directory: ${{ steps.info.outputs.COBOL_PATH }}
