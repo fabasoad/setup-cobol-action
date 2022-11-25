@@ -1,10 +1,7 @@
 ---
-name: Functional Tests
+name: Functional Tests (Local)
 
 on:
-  push:
-    branches:
-      - 'main'
   pull_request:
 
 jobs:
@@ -18,11 +15,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Setup COBOL
-        uses: ./
+      - uses: ./
         with:
           version: ${{ matrix.version }}
       - name: Validate script
         run: |
           cobc -x ./HelloWorld.cob
-          [[ "$(./HelloWorld)" == "Hello World!" ]] || exit 1;
+          [ "$(./HelloWorld)" = "Hello World!" ] || exit 1;
+        shell: sh
