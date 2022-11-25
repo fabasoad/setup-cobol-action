@@ -1,11 +1,7 @@
 ---
 name: Functional Tests (Local)
 
-on:
-  push:
-    branches:
-      - 'fix-122'
-  pull_request:
+on: [pull_request]
 
 jobs:
   run-script:
@@ -25,4 +21,5 @@ jobs:
       - name: Validate script
         run: |
           cobc -x ./HelloWorld.cob
-          [[ "$(./HelloWorld)" == "Hello World!" ]] || exit 1;
+          [ "$(./HelloWorld)" = "Hello World!" ] || exit 1;
+        shell: sh

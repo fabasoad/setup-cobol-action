@@ -4,7 +4,7 @@ name: Functional Tests (Remote)
 on:
   push:
     branches:
-      - 'fix-122'
+      - 'main'
 
 jobs:
   run-script:
@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Setup COBOL
-        uses: fabasoad/setup-cobol-action@fix-122
+        uses: fabasoad/setup-cobol-action@main
         with:
           version: ${{ matrix.version }}
       - name: Prepare script
