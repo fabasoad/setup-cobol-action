@@ -22,12 +22,12 @@ jobs:
           version: ${{ matrix.version }}
       - name: Prepare script
         run: |
-          echo "HELLO * HISTORIC EXAMPLE OF HELLO WORLD IN COBOL" > HelloWorld.cob
-          echo "       IDENTIFICATION DIVISION." >> HelloWorld.cob
-          echo "       PROGRAM-ID. HELLO." >> HelloWorld.cob
-          echo "       PROCEDURE DIVISION." >> HelloWorld.cob
-          echo "           DISPLAY "Hello World!"." >> HelloWorld.cob
-          echo "           STOP RUN." >> HelloWorld.cob
+          echo 'HELLO * HISTORIC EXAMPLE OF HELLO WORLD IN COBOL' > HelloWorld.cob
+          echo '       IDENTIFICATION DIVISION.' >> HelloWorld.cob
+          echo '       PROGRAM-ID. HELLO.' >> HelloWorld.cob
+          echo '       PROCEDURE DIVISION.' >> HelloWorld.cob
+          echo '           DISPLAY "Hello World!".' >> HelloWorld.cob
+          echo '           STOP RUN.' >> HelloWorld.cob
         shell: sh
       - name: Print file
         run: cat ./HelloWorld.cob
