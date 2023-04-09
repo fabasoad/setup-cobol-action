@@ -19,7 +19,7 @@ repos:
   - repo: https://github.com/igorshubovych/markdownlint-cli
     rev: v0.33.0
     hooks:
-      - id: markdownlint
+      - id: markdownlint-fix
   # Shell
   - repo: https://github.com/shellcheck-py/shellcheck-py
     rev: v0.9.0.2
@@ -45,5 +45,4 @@ repos:
       - id: no-commit-to-branch
       - id: trailing-whitespace
 ci:
-  autofix_prs: true
-  autoupdate_schedule: quarterly
+  autofix_prs: false

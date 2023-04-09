@@ -1,10 +1,14 @@
 ---
 name: Functional Tests (Remote)
 
-on:
+on:  # yamllint disable-line rule:truthy
   push:
     branches:
       - 'main'
+
+defaults:
+  run:
+    shell: sh
 
 jobs:
   run-script:
@@ -28,12 +32,9 @@ jobs:
           echo '       PROCEDURE DIVISION.' >> HelloWorld.cob
           echo '           DISPLAY "Hello World!".' >> HelloWorld.cob
           echo '           STOP RUN.' >> HelloWorld.cob
-        shell: sh
       - name: Print file
         run: cat ./HelloWorld.cob
-        shell: sh
       - name: Validate script
         run: |
           cobc -x ./HelloWorld.cob
           [ "$(./HelloWorld)" = "Hello World!" ] || exit 1;
-        shell: sh
