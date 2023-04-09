@@ -1,13 +1,13 @@
 ---
 name: Create release
 
-on:
+on:  # yamllint disable-line rule:truthy
   push:
     tags:
       - 'v*.*.*'
 
 jobs:
-  create_release:
+  create-release:
     name: Release
     runs-on: ubuntu-latest
     steps:

@@ -11,15 +11,15 @@ repos:
       - id: detect-secrets
         stages: ["commit", "push"]
   - repo: https://github.com/zricethezav/gitleaks
-    rev: v8.15.2
+    rev: v8.16.2
     hooks:
       - id: gitleaks
         stages: ["commit", "push"]
   # Markdown
   - repo: https://github.com/igorshubovych/markdownlint-cli
-    rev: v0.32.2
+    rev: v0.33.0
     hooks:
-      - id: markdownlint
+      - id: markdownlint-fix
   # Shell
   - repo: https://github.com/shellcheck-py/shellcheck-py
     rev: v0.9.0.2
@@ -28,7 +28,7 @@ repos:
         stages: ["push"]
   # Yaml
   - repo: https://github.com/adrienverge/yamllint
-    rev: v1.28.0
+    rev: v1.30.0
     hooks:
       - id: yamllint
   # Other
@@ -45,5 +45,4 @@ repos:
       - id: no-commit-to-branch
       - id: trailing-whitespace
 ci:
-  autofix_prs: true
-  autoupdate_schedule: quarterly
+  autofix_prs: false
