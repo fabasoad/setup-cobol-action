@@ -2,8 +2,9 @@
 
 [![Stand With Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://stand-with-ukraine.pp.ua)
 ![GitHub release](https://img.shields.io/github/v/release/fabasoad/setup-cobol-action?include_prereleases)
-![Functional Tests](https://github.com/fabasoad/setup-cobol-action/workflows/Functional%20Tests%20(Remote)/badge.svg)
-[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/fabasoad/setup-cobol-action/main.svg)](https://results.pre-commit.ci/latest/github/fabasoad/setup-cobol-action/main)
+![functional-tests-local](https://github.com/fabasoad/setup-cobol-action/actions/workflows/functional-tests-local.yml/badge.svg)
+![functional-tests-remote](https://github.com/fabasoad/setup-cobol-action/actions/workflows/functional-tests-remote.yml/badge.svg)
+![pre-commit](https://github.com/fabasoad/setup-cobol-action/actions/workflows/pre-commit.yml/badge.svg)
 
 This action sets up a [GnuCOBOL](https://en.wikipedia.org/wiki/COBOL) programming
 language.
@@ -12,9 +13,11 @@ Supported OS: Linux Ubuntu.
 
 ## Inputs
 
+<!-- prettier-ignore-start -->
 | Name    | Required | Description       | Default | Possible values                        |
 |---------|----------|-------------------|---------|----------------------------------------|
 | version | No       | GnuCOBOL version. | `3.1.2` | `3.0-rc1`, `3.1-rc1`, `3.1.1`, `3.1.2` |
+<!-- prettier-ignore-end -->
 
 ## Example usage
 
