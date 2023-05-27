@@ -1,9 +1,9 @@
 ---
 name: Update license
 
-on:  # yamllint disable-line rule:truthy
+on: # yamllint disable-line rule:truthy
   schedule:
-    - cron: '0 5 1 1 *'
+    - cron: "0 5 1 1 *"
 
 jobs:
   run:
