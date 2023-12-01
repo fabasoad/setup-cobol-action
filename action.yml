@@ -14,7 +14,7 @@ runs:
   using: "composite"
   steps:
     - name: Fail
-      uses: actions/github-script@v6
+      uses: actions/github-script@v7
       if: ${{ runner.os != 'Linux' }}
       with:
         script: core.setFailed('${{ runner.os }} ${{ runner.arch }} is not supported');
