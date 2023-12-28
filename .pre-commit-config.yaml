@@ -10,12 +10,12 @@ repos:
     hooks:
       - id: detect-secrets
   - repo: https://github.com/zricethezav/gitleaks
-    rev: v8.18.0
+    rev: v8.18.1
     hooks:
       - id: gitleaks
   # Markdown
   - repo: https://github.com/igorshubovych/markdownlint-cli
-    rev: v0.37.0
+    rev: v0.38.0
     hooks:
       - id: markdownlint-fix
         stages: ["commit"]
@@ -27,7 +27,7 @@ repos:
         stages: ["push"]
   # Yaml
   - repo: https://github.com/adrienverge/yamllint
-    rev: v1.32.0
+    rev: v1.33.0
     hooks:
       - id: yamllint
         stages: ["push"]
@@ -40,12 +40,12 @@ repos:
         stages: ["push"]
   # Other
   - repo: https://github.com/pre-commit/mirrors-prettier
-    rev: v3.0.3
+    rev: v3.1.0
     hooks:
       - id: prettier
         stages: ["commit"]
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
+    rev: v4.5.0
     hooks:
       - id: check-merge-conflict
       - id: check-json
