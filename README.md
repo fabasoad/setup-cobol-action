@@ -4,7 +4,8 @@
 ![GitHub release](https://img.shields.io/github/v/release/fabasoad/setup-cobol-action?include_prereleases)
 ![functional-tests-local](https://github.com/fabasoad/setup-cobol-action/actions/workflows/functional-tests-local.yml/badge.svg)
 ![functional-tests-remote](https://github.com/fabasoad/setup-cobol-action/actions/workflows/functional-tests-remote.yml/badge.svg)
-![pre-commit](https://github.com/fabasoad/setup-cobol-action/actions/workflows/pre-commit.yml/badge.svg)
+![security](https://github.com/fabasoad/setup-cobol-action/actions/workflows/security.yml/badge.svg)
+![linting](https://github.com/fabasoad/setup-cobol-action/actions/workflows/linting.yml/badge.svg)
 
 This action sets up a [GnuCOBOL](https://en.wikipedia.org/wiki/COBOL) programming
 language.

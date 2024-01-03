@@ -14,21 +14,25 @@ runs:
   using: "composite"
   steps:
     - name: Fail
-      uses: actions/github-script@v7
       if: ${{ runner.os != 'Linux' }}
-      with:
-        script: core.setFailed('${{ runner.os }} ${{ runner.arch }} is not supported');
+      shell: sh
+      run: |
+        echo "::error::${RUNNER_OS} ${RUNNER_ARCH} is not supported"
+        exit 1
     - name: Collect info
       id: info
       if: ${{ runner.os == 'Linux' }}
+      shell: sh
       run: |
         COBOL_INSTALLED=$(if command -v cobc >/dev/null 2>&1; then echo true; else echo false; fi)
-        echo "COBOL_INSTALLED=$COBOL_INSTALLED" >> $GITHUB_OUTPUT
-        mkdir -p "$GITHUB_WORKSPACE/cobol"
-        echo "COBOL_PATH=$GITHUB_WORKSPACE/cobol" >> $GITHUB_OUTPUT
-      shell: sh
+        echo "COBOL_INSTALLED=${COBOL_INSTALLED}" >> "$GITHUB_OUTPUT"
+        mkdir -p "${GITHUB_WORKSPACE}/cobol"
+        echo "COBOL_PATH=${GITHUB_WORKSPACE}/cobol" >> "$GITHUB_OUTPUT"
     - name: Install COBOL
       if: ${{ runner.os == 'Linux' && steps.info.outputs.COBOL_INSTALLED == 'false' }}
+      env:
+        INPUT_VERSION: "${{ inputs.version }}"
+      shell: sh
       run: |
         sudo apt-get update
         sudo apt-get -y install curl tar libncurses5-dev libgmp-dev libdb-dev
@@ -37,10 +41,9 @@ runs:
 
         # download and install open-cobol for dependencies (libcob >= 4.0)
         sudo apt-get -y install ranger autoconf build-essential
-        curl -sLk https://sourceforge.net/projects/open-cobol/files/gnu-cobol/"$(echo "${{ inputs.version }}" | cut -b1- | cut -b-3)"/gnucobol-"${{ inputs.version }}".tar.gz | tar xz
-        cd gnucobol-"${{ inputs.version }}" && ./configure --prefix=/usr && sudo make && sudo make install && sudo ldconfig && cd /tmp/ && sudo rm -rf ./*
+        curl -sLk https://sourceforge.net/projects/open-cobol/files/gnu-cobol/"$(echo "${INPUT_VERSION}" | cut -b1- | cut -b-3)"/gnucobol-"${INPUT_VERSION}".tar.gz | tar xz
+        cd gnucobol-"${INPUT_VERSION}" && ./configure --prefix=/usr && sudo make && sudo make install && sudo ldconfig && cd /tmp/ && sudo rm -rf ./*
         sudo apt-get -y --purge autoremove
 
         echo "/home/cobol" >> $GITHUB_PATH
-      shell: sh
       working-directory: ${{ steps.info.outputs.COBOL_PATH }}

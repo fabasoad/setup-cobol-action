@@ -18,7 +18,8 @@ jobs:
         version: ["3.1.2", "3.0-rc1", "3.1-rc1", "3.1.1"]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout ${{ github.repository }}
+        uses: actions/checkout@v4
       - name: Setup COBOL
         uses: ./
         with:
