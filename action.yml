@@ -45,5 +45,5 @@ runs:
         cd gnucobol-"${INPUT_VERSION}" && ./configure --prefix=/usr && sudo make && sudo make install && sudo ldconfig && cd /tmp/ && sudo rm -rf ./*
         sudo apt-get -y --purge autoremove
 
-        echo "/home/cobol" >> $GITHUB_PATH
+        echo "/home/cobol" >> "$GITHUB_PATH"
       working-directory: ${{ steps.info.outputs.COBOL_PATH }}
