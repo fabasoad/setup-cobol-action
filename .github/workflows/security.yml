@@ -39,7 +39,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Scan current project
         id: scan-directory
-        uses: anchore/scan-action@v3
+        uses: anchore/scan-action@v4
         with:
           by-cve: "true"
           path: "."
