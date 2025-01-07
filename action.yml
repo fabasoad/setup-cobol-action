@@ -54,3 +54,7 @@ runs:
       run: ./install-cobc.sh "${INPUT_VERSION}" "${{ steps.info.outputs.bin-path }}"
       shell: sh
       working-directory: ${{ github.action_path }}/src
+
+    - name: Print version
+      run: cobc --info
+      shell: sh

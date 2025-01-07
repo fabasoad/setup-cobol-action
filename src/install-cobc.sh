@@ -17,7 +17,6 @@ main() {
   url="https://sourceforge.net/projects/open-cobol/files/gnu-cobol/${minor_version}/gnucobol-${input_version}.tar.gz"
   curl -sLk "${url}" -o "${bin_path}/gnucobol.tar.gz"
   tar -xvf "${bin_path}/gnucobol.tar.gz" -C "${bin_path}" --strip-components 1
-  ls -la "${bin_path}"
   rm -f "${bin_path}/gnucobol.tar.gz"
   cd "${bin_path}" \
     && ./configure --prefix=/usr \
