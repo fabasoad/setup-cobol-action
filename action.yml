@@ -3,7 +3,7 @@ name: Setup COBOL
 author: Yevhen Fabizhevskyi
 description: This action sets up GnuCOBOL.
 branding:
-  icon: chevrons-right
+  icon: terminal
   color: gray-dark
 inputs:
   version:

@@ -10,15 +10,28 @@
 This action sets up a [GnuCOBOL](https://en.wikipedia.org/wiki/COBOL) programming
 language.
 
-Supported OS: Linux Ubuntu.
+## Supported OS
+
+<!-- prettier-ignore-start -->
+| OS      |                    |
+|---------|--------------------|
+| Windows | :x:                |
+| Linux   | :white_check_mark: |
+| macOS   | :x:                |
+<!-- prettier-ignore-end -->
 
 ## Inputs
 
-<!-- prettier-ignore-start -->
-| Name    | Required | Description       | Default | Possible values                        |
-|---------|----------|-------------------|---------|----------------------------------------|
-| version | No       | GnuCOBOL version. | `3.1.2` | `3.0-rc1`, `3.1-rc1`, `3.1.1`, `3.1.2` |
-<!-- prettier-ignore-end -->
+```yaml
+- uses: fabasoad/setup-cobol-action@v1
+  with:
+    # (Optional) GnuCOBOL version. Defaults to 3.1.2.
+    version: "3.1.2"
+```
+
+## Outputs
+
+None.
 
 ## Example usage
 
@@ -34,8 +47,8 @@ jobs:
     name: Setup
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@main
-      - uses: fabasoad/setup-cobol-action@main
+      - uses: actions/checkout@v4
+      - uses: fabasoad/setup-cobol-action@v1
       - name: Run script
         run: |
           cobc -x HelloWorld.cob
