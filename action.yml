@@ -3,46 +3,58 @@ name: Setup COBOL
 author: Yevhen Fabizhevskyi
 description: This action sets up GnuCOBOL.
 branding:
-  icon: chevrons-right
+  icon: terminal
   color: gray-dark
 inputs:
   version:
     description: "GnuCOBOL version."
     required: false
-    default: "3.1.2"
+    default: "3.2"
+  force:
+    description: |
+      If "true" it installs cobc even if it is already installed on a runner.
+      Otherwise, skips installation.
+    default: "false"
+    required: false
+outputs:
+  installed:
+    description: Whether cobc was installed or not.
+    value: "${{ steps.install-cobc.outcome == 'success' }}"
 runs:
   using: "composite"
   steps:
     - name: Fail
       if: ${{ runner.os != 'Linux' }}
-      shell: sh
       run: |
-        echo "::error::${RUNNER_OS} ${RUNNER_ARCH} is not supported"
+        echo "::error title=OS is not supported::${RUNNER_OS} ${RUNNER_ARCH} is not supported"
         exit 1
+      shell: sh
+
+    - name: Validate inputs
+      id: validate-inputs
+      env:
+        INPUT_FORCE: "${{ inputs.force }}"
+      run: ./validate-inputs.sh "${INPUT_FORCE}"
+      shell: sh
+      working-directory: ${{ github.action_path }}/src
+
     - name: Collect info
       id: info
+      env:
+        INPUT_FORCE: "${{ inputs.force }}"
+      run: ./collect-info.sh "${INPUT_FORCE}"
       shell: sh
-      run: |
-        cobol_installed=$(if command -v cobc >/dev/null 2>&1; then echo true; else echo false; fi)
-        echo "cobol-installed=${cobol_installed}" >> "$GITHUB_OUTPUT"
-        mkdir -p "${GITHUB_WORKSPACE}/cobol"
-        echo "cobol-path=${GITHUB_WORKSPACE}/cobol" >> "$GITHUB_OUTPUT"
+      working-directory: ${{ github.action_path }}/src
+
     - name: Install COBOL
-      if: ${{ steps.info.outputs.cobol-installed == 'false' }}
+      if: ${{ steps.info.outputs.bin-installed == 'false' }}
+      id: install-cobc
       env:
         INPUT_VERSION: "${{ inputs.version }}"
+      run: ./install-cobc.sh "${INPUT_VERSION}" "${{ steps.info.outputs.bin-path }}"
       shell: sh
-      run: |
-        sudo apt-get update
-        sudo apt-get -y install curl tar libncurses5-dev libgmp-dev libdb-dev
-        sudo apt-get -y autoremove
-        sudo apt-get -y install iproute2
+      working-directory: ${{ github.action_path }}/src
 
-        # download and install open-cobol for dependencies (libcob >= 4.0)
-        sudo apt-get -y install ranger autoconf build-essential
-        curl -sLk https://sourceforge.net/projects/open-cobol/files/gnu-cobol/"$(echo "${INPUT_VERSION}" | cut -b1- | cut -b-3)"/gnucobol-"${INPUT_VERSION}".tar.gz | tar xz
-        cd gnucobol-"${INPUT_VERSION}" && ./configure --prefix=/usr && sudo make && sudo make install && sudo ldconfig && cd /tmp/ && sudo rm -rf ./*
-        sudo apt-get -y --purge autoremove
-
-        echo "/home/cobol" >> "$GITHUB_PATH"
-      working-directory: ${{ steps.info.outputs.cobol-path }}
+    - name: Print version
+      run: cobc --info
+      shell: sh

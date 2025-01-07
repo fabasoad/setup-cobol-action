@@ -2,22 +2,41 @@
 
 [![Stand With Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://stand-with-ukraine.pp.ua)
 ![GitHub release](https://img.shields.io/github/v/release/fabasoad/setup-cobol-action?include_prereleases)
-![functional-tests-local](https://github.com/fabasoad/setup-cobol-action/actions/workflows/functional-tests-local.yml/badge.svg)
-![functional-tests-remote](https://github.com/fabasoad/setup-cobol-action/actions/workflows/functional-tests-remote.yml/badge.svg)
+![functional-tests](https://github.com/fabasoad/setup-cobol-action/actions/workflows/functional-tests.yml/badge.svg)
 ![security](https://github.com/fabasoad/setup-cobol-action/actions/workflows/security.yml/badge.svg)
 ![linting](https://github.com/fabasoad/setup-cobol-action/actions/workflows/linting.yml/badge.svg)
 
 This action sets up a [GnuCOBOL](https://en.wikipedia.org/wiki/COBOL) programming
 language.
 
-Supported OS: Linux Ubuntu.
+## Supported OS
+
+<!-- prettier-ignore-start -->
+| OS      |                    |
+|---------|--------------------|
+| Windows | :x:                |
+| Linux   | :white_check_mark: |
+| macOS   | :x:                |
+<!-- prettier-ignore-end -->
 
 ## Inputs
 
+```yaml
+- uses: fabasoad/setup-cobol-action@v1
+  with:
+    # (Optional) GnuCOBOL version. Defaults to 3.2.
+    version: "3.2"
+    # (Optional) If "true" it installs cobc even if it is already installed on a
+    # runner. Otherwise, skips installation.
+    force: "false"
+```
+
+## Outputs
+
 <!-- prettier-ignore-start -->
-| Name    | Required | Description       | Default | Possible values                        |
-|---------|----------|-------------------|---------|----------------------------------------|
-| version | No       | GnuCOBOL version. | `3.1.2` | `3.0-rc1`, `3.1-rc1`, `3.1.1`, `3.1.2` |
+| Name      | Description                       | Example |
+|-----------|-----------------------------------|---------|
+| installed | Whether cobc was installed or not | `true`  |
 <!-- prettier-ignore-end -->
 
 ## Example usage
@@ -34,8 +53,8 @@ jobs:
     name: Setup
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@main
-      - uses: fabasoad/setup-cobol-action@main
+      - uses: actions/checkout@v4
+      - uses: fabasoad/setup-cobol-action@v1
       - name: Run script
         run: |
           cobc -x HelloWorld.cob
