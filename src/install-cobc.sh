@@ -15,6 +15,7 @@ main() {
   minor_version="$(echo "${input_version}" | cut -b1- | cut -b-3)"
   url="https://sourceforge.net/projects/open-cobol/files/gnu-cobol/${minor_version}/gnucobol-${input_version}.tar.gz"
   curl -sLk "${url}" -o "${bin_path}/gnucobol.tar.gz"
+  ls -la "${bin_path}"
   tar -xvf "${bin_path}/gnucobol.tar.gz" -C "${bin_path}"
   rm -f "${bin_path}/gnucobol.tar.gz"
   cd "${bin_path}" \
