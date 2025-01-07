@@ -9,7 +9,7 @@ inputs:
   version:
     description: "GnuCOBOL version."
     required: false
-    default: "3.1.2"
+    default: "3.2"
   force:
     description: |
       If "true" it installs cobc even if it is already installed on a runner.
@@ -51,6 +51,6 @@ runs:
       id: install-cobc
       env:
         INPUT_VERSION: "${{ inputs.version }}"
-      run: ${GITHUB_ACTION_PATH}/src/install-cobc.sh "${INPUT_VERSION}"
+      run: ./install-cobc.sh "${INPUT_VERSION}" "${{ steps.info.outputs.bin-path }}"
       shell: sh
-      working-directory: ${{ steps.info.outputs.bin-path }}
+      working-directory: ${{ github.action_path }}/src

@@ -25,8 +25,8 @@ language.
 ```yaml
 - uses: fabasoad/setup-cobol-action@v1
   with:
-    # (Optional) GnuCOBOL version. Defaults to 3.1.2.
-    version: "3.1.2"
+    # (Optional) GnuCOBOL version. Defaults to 3.2.
+    version: "3.2"
     # (Optional) If "true" it installs cobc even if it is already installed on a
     # runner. Otherwise, skips installation.
     force: "false"
