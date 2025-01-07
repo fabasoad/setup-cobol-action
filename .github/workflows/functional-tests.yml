@@ -38,3 +38,37 @@ jobs:
         run: |
           cobc -x ./HelloWorld.cob
           [ "$(./HelloWorld)" = "Hello World!" ] || exit 1;
+
+  test-force:
+    name: Test force
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    strategy:
+      fail-fast: false
+      matrix:
+        force: ["true", "false"]
+    steps:
+      - name: Checkout ${{ github.repository }}
+        uses: actions/checkout@v4
+      - name: Setup COBOL 1
+        id: setup-cobol-1
+        uses: ./
+      - name: Setup COBOL 2
+        id: setup-cobol-2
+        uses: ./
+        with:
+          force: ${{ matrix.force }}
+      - name: Test action completion
+        run: |
+          test_equal() {
+            if [ "${2}" != "${3}" ]; then
+              echo "::error title=${1}::Expected: ${3}. Actual: ${2}."
+              exit 1
+            fi
+          }
+          test_equal "Wrong \"installed\" output from setup-cobol-1" \
+            "${{ steps.setup-cobol-1.outputs.installed }}" \
+            "true"
+          test_equal "Wrong \"installed\" output from setup-cobol-2" \
+            "${{ steps.setup-cobol-2.outputs.installed }}" \
+            "${{ matrix.force }}"

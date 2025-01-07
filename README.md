@@ -27,11 +27,18 @@ language.
   with:
     # (Optional) GnuCOBOL version. Defaults to 3.1.2.
     version: "3.1.2"
+    # (Optional) If "true" it installs cobc even if it is already installed on a
+    # runner. Otherwise, skips installation.
+    force: "false"
 ```
 
 ## Outputs
 
-None.
+<!-- prettier-ignore-start -->
+| Name      | Description                       | Example |
+|-----------|-----------------------------------|---------|
+| installed | Whether cobc was installed or not | `true`  |
+<!-- prettier-ignore-end -->
 
 ## Example usage
 
