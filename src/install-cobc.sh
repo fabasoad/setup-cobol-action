@@ -6,26 +6,19 @@ LIB_DIR_PATH="${SRC_DIR_PATH}/lib"
 
 . "${LIB_DIR_PATH}/logging.sh"
 
-get_url() {
-  minor_version="$(echo "${1}" | cut -b1- | cut -b-3)"
-  case "${minor_version}" in
-    "4.0")
-      echo "https://sourceforge.net/projects/open-cobol/files/gnu-cobol/nightly_snapshots/gnucobol-${input_version}-early-dev.tar.gz"
-      ;;
-    "3.3")
-      echo "https://sourceforge.net/projects/open-cobol/files/gnu-cobol/nightly_snapshots/gnucobol-${input_version}-dev.tar.gz"
-      ;;
-    *)
-      echo "https://sourceforge.net/projects/open-cobol/files/gnu-cobol/${minor_version}/gnucobol-${input_version}.tar.gz"
-      ;;
-  esac
-}
-
 main() {
   input_version="${1}"
   bin_path="${2}"
+  minor_version="$(echo "${input_version}" | cut -b1- | cut -b-3)"
 
   sudo apt-get update
+  if [ "${minor_version}" = "4.0" ]; then
+    log_info "Installing cobc ${minor_version} from the apt-get"
+    sudo apt-get install -y gnucobol4
+    exit 0
+  fi
+
+  log_info "Installing cobc ${minor_version} from the source code"
   sudo apt-get -y install curl tar libncurses5-dev libgmp-dev libdb-dev
   sudo apt-get -y autoremove
   sudo apt-get -y install iproute2
@@ -34,7 +27,7 @@ main() {
   sudo apt-get -y install ranger autoconf build-essential
 
   mkdir -p "${bin_path}"
-  url="$(get_url "${input_version}")"
+  url="https://sourceforge.net/projects/open-cobol/files/gnucobol/${minor_version}/gnucobol-${input_version}.tar.gz"
   log_info "Downloading ${url}"
   curl -sLk "${url}" -o "${bin_path}/gnucobol.tar.gz"
   tar -xvf "${bin_path}/gnucobol.tar.gz" -C "${bin_path}" --strip-components 1
