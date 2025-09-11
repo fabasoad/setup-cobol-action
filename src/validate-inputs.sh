@@ -1,6 +1,5 @@
 #!/usr/bin/env sh
 
-
 # Validates string to be one of the possible values (emulating enum data type).
 # Parameters:
 # 1. (Required) Param name to display it correctly in the error message for the
