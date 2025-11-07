@@ -27,7 +27,11 @@ main() {
   sudo apt-get -y install ranger autoconf build-essential
 
   mkdir -p "${bin_path}"
-  url="https://sourceforge.net/projects/open-cobol/files/gnucobol/${minor_version}/gnucobol-${input_version}.tar.gz"
+  if [ "${input_version}" = "3.3" ]; then
+    url="https://ci.appveyor.com/api/projects/GitMensch/gnucobol-3-x/artifacts/gnucobol-3.3-dev.tar.gz?job=Image:%20Ubuntu2204"
+  else
+    url="https://sourceforge.net/projects/open-cobol/files/gnucobol/${minor_version}/gnucobol-${input_version}.tar.gz"
+  fi
   log_info "Downloading ${url}"
   curl -sLk "${url}" -o "${bin_path}/gnucobol.tar.gz"
   tar -xvf "${bin_path}/gnucobol.tar.gz" -C "${bin_path}" --strip-components 1
