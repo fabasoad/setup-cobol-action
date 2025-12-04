@@ -13,7 +13,7 @@ repos:
         types: [text]
         args: []
         # https://github.com/prettier/prettier/releases
-        additional_dependencies: ["prettier@3.7.1"]
+        additional_dependencies: ["prettier@3.7.4"]
         stages: ["pre-commit"]
   # Security
   - repo: https://github.com/Yelp/detect-secrets
