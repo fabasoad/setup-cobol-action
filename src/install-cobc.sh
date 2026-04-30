@@ -7,6 +7,8 @@ LIB_DIR_PATH="${SRC_DIR_PATH}/lib"
 . "${LIB_DIR_PATH}/logging.sh"
 
 main() {
+  echo ">>>>>> Before, /tmp/"
+  ls -la /tmp/
   input_version="${1}"
   bin_path="${2}"
   minor_version="$(echo "${input_version}" | cut -b1- | cut -b-3)"
@@ -37,6 +39,8 @@ main() {
     && sudo make \
     && sudo make install \
     && sudo ldconfig \
+    && echo ">>>>>> After, /tmp/" \
+    && ls -la /tmp/ \
     && cd /tmp/ \
     && sudo rm -rf ./*
   sudo apt-get -y --purge autoremove
