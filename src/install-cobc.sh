@@ -36,9 +36,7 @@ main() {
     && ./configure --prefix=/usr \
     && sudo make \
     && sudo make install \
-    && sudo ldconfig \
-    && cd /tmp/ \
-    && sudo rm -rf ./*
+    && sudo ldconfig
   sudo apt-get -y --purge autoremove
 
   echo "/home/cobol" >> "$GITHUB_PATH"
