@@ -23,6 +23,8 @@ jobs:
   run-script:
     name: Run script
     timeout-minutes: 5
+    permissions:
+      contents: read
     strategy:
       fail-fast: false
       matrix:
@@ -30,7 +32,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout ${{ github.repository }}
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: "false"
       - name: Setup COBOL
         uses: ./
         with:
@@ -44,13 +48,17 @@ jobs:
     name: Test force
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    permissions:
+      contents: read
     strategy:
       fail-fast: false
       matrix:
         force: ["true", "false"]
     steps:
       - name: Checkout ${{ github.repository }}
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: "false"
       - name: Setup COBOL 1
         id: setup-cobol-1
         uses: ./
@@ -60,6 +68,9 @@ jobs:
         with:
           force: ${{ matrix.force }}
       - name: Test action completion
+        env:
+          STEP_SETUP_COBOL_1_OUTPUT_INSTALLED: "${{ steps.setup-cobol-1.outputs.installed }}"
+          STEP_SETUP_COBOL_2_OUTPUT_INSTALLED: "${{ steps.setup-cobol-2.outputs.installed }}"
         run: |
           test_equal() {
             if [ "${2}" != "${3}" ]; then
@@ -68,8 +79,8 @@ jobs:
             fi
           }
           test_equal "Wrong \"installed\" output from setup-cobol-1" \
-            "${{ steps.setup-cobol-1.outputs.installed }}" \
+            "${STEP_SETUP_COBOL_1_OUTPUT_INSTALLED}" \
             "true"
           test_equal "Wrong \"installed\" output from setup-cobol-2" \
-            "${{ steps.setup-cobol-2.outputs.installed }}" \
+            "${STEP_SETUP_COBOL_2_OUTPUT_INSTALLED}" \
             "${{ matrix.force }}"
