@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
+set -e
 
 SCRIPT_PATH=$(realpath "$0")
 SRC_DIR_PATH=$(dirname "$SCRIPT_PATH")
@@ -29,7 +30,7 @@ main() {
   mkdir -p "${bin_path}"
   url="https://sourceforge.net/projects/open-cobol/files/gnucobol/${minor_version}/gnucobol-${input_version}.tar.gz"
   log_info "Downloading ${url}"
-  curl -sLk "${url}" -o "${bin_path}/gnucobol.tar.gz"
+  curl -fsLk "${url}" -o "${bin_path}/gnucobol.tar.gz"
   tar -xvf "${bin_path}/gnucobol.tar.gz" -C "${bin_path}" --strip-components 1
   rm -f "${bin_path}/gnucobol.tar.gz"
   cd "${bin_path}" \
