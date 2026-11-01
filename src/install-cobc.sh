@@ -33,11 +33,19 @@ main() {
   curl -fsLk "${url}" -o "${bin_path}/gnucobol.tar.gz"
   tar -xvf "${bin_path}/gnucobol.tar.gz" -C "${bin_path}" --strip-components 1
   rm -f "${bin_path}/gnucobol.tar.gz"
-  cd "${bin_path}" \
-    && ./configure --prefix=/usr \
-    && sudo make \
-    && sudo make install \
-    && sudo ldconfig
+  # GnuCOBOL 3.x predates GCC 14, which promoted implicit function
+  # declarations and incompatible pointer assignments to errors and switched
+  # the default language to C23. Relax both so the sources keep building on
+  # newer runner images (e.g. Ubuntu 26.04 with GCC 15).
+  cflags="-O2 -std=gnu17"
+  cflags="${cflags} -Wno-error=implicit-function-declaration"
+  cflags="${cflags} -Wno-error=incompatible-pointer-types"
+
+  cd "${bin_path}"
+  ./configure --prefix=/usr CFLAGS="${cflags}"
+  sudo make
+  sudo make install
+  sudo ldconfig
   sudo apt-get -y --purge autoremove
 
   echo "/home/cobol" >> "$GITHUB_PATH"
