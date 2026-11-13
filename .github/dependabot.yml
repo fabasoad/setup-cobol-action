@@ -6,10 +6,7 @@ multi-ecosystem-groups:
     schedule:
       interval: "weekly"
     open-pull-requests-limit: 5
-    reviewers:
-      - "fabasoad"
-    labels:
-      - "dependencies"
+    labels: ["dependencies"]
 
 updates:
   - package-ecosystem: "github-actions"
